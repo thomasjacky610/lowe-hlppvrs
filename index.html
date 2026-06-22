@@ -30,7 +30,7 @@ nav{background:#004990;padding:0 0;position:sticky;top:0;z-index:100;box-shadow:
 .mobile-menu.open{display:flex}
 
 /* HERO */
-.hero{background:linear-gradient(135deg,#003a75 0%,#004990 50%,#0060c0 100%);padding:72px 24px;text-align:center;position:relative;overflow:hidden}
+.hero{background:linear-gradient(135deg,rgba(0,58,117,0.88) 0%,rgba(0,73,144,0.85) 50%,rgba(0,96,192,0.82) 100%),url('hero.webp') center/cover no-repeat;padding:72px 24px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:24px;letter-spacing:0.5px}
 .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulse 1.5s infinite}
@@ -207,7 +207,7 @@ footer ul li a:hover{color:#ffd700}
       <li><a href="#">Lowe's Survey</a></li>
       <li><a href="#">Survey Guides</a></li>
       <li><a href="#">Safety Tips</a></li>
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
       <li><a href="form.html" class="nav-cta">Start Survey &#8594;</a></li>
     </ul>
     <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
@@ -319,8 +319,7 @@ footer ul li a:hover{color:#ffd700}
     <div class="about-grid">
       <div class="about-img">
         <div class="about-img-inner">
-          <span class="big-icon">&#127968;</span>
-          <p>Lowe's Home Improvement</p>
+          <img src="homeimpro.jpg">
         </div>
       </div>
       <div class="about-text">
