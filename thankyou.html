@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Congratulations — You Won! | YourRetailGuides</title>
+<meta name="description" content="Congratulations! You have won a $500 Lowe's gift card. Verify your identity to claim your prize.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;color:#1a1a1a;background:#f0f4fa;font-size:16px;line-height:1.7}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{background:#ffffff;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:center;height:64px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;font-size:18px;font-weight:700}
+.logo-mark{width:36px;height:36px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center}
+.logo-mark span{color:#004990;font-weight:900;font-size:13px;letter-spacing:-1px}
+.nav-home{color:rgba(255,255,255,0.8);font-size:13px;display:flex;align-items:center;gap:6px}
+.nav-home:hover{color:#fff}
+
+/* CONFETTI STRIP */
+.confetti-strip{background:linear-gradient(90deg,#004990,#0060c0,#004990);padding:10px 24px;text-align:center;font-size:13px;font-weight:700;color:#ffd700;letter-spacing:0.5px;animation:shimmer 3s infinite}
+@keyframes shimmer{0%,100%{opacity:1}50%{opacity:0.85}}
+
+/* MAIN */
+main{min-height:calc(100vh - 130px);padding:48px 20px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:28px}
+
+/* SUCCESS CARD */
+.success-card{background:#fff;border-radius:20px;width:100%;max-width:680px;box-shadow:0 6px 32px rgba(0,73,144,0.12);overflow:hidden}
+
+/* CARD TOP */
+.card-top{background:linear-gradient(135deg,#003a75 0%,#004990 50%,#0060c0 100%);padding:52px 36px 44px;text-align:center;position:relative;overflow:hidden}
+.card-top::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.trophy-icon{font-size:64px;margin-bottom:12px;position:relative;z-index:1;animation:bounceIn 0.7s cubic-bezier(0.34,1.56,0.64,1) both}
+@keyframes bounceIn{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
+.congrats-tag{display:inline-block;background:rgba(255,215,0,0.2);border:1px solid rgba(255,215,0,0.5);color:#ffd700;font-size:13px;font-weight:700;letter-spacing:1px;padding:5px 18px;border-radius:20px;margin-bottom:14px;position:relative;z-index:1}
+.card-top h1{font-size:clamp(24px,4.5vw,34px);font-weight:900;color:#fff;line-height:1.15;margin-bottom:14px;position:relative;z-index:1}
+.card-top h1 span{color:#ffd700}
+.card-top p{font-size:15px;color:rgba(255,255,255,0.88);max-width:480px;margin:0 auto;position:relative;z-index:1;line-height:1.65}
+
+/* CARD BODY */
+.card-body{padding:36px}
+
+/* WIN BOX */
+.win-box{display:flex;align-items:center;background:linear-gradient(135deg,#f0f4fa,#e8f0fe);border:2px solid #d0e0f5;border-radius:14px;padding:24px 28px;margin-bottom:28px;gap:0}
+.win-left,.win-right{flex:1;text-align:center}
+.win-divider{width:1px;background:#c0d0e8;height:60px;flex-shrink:0;margin:0 20px}
+.win-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#004990;margin-bottom:6px}
+.win-amount{font-size:42px;font-weight:900;color:#004990;line-height:1}
+.win-ref{font-size:18px;font-weight:800;color:#004990;font-family:monospace;letter-spacing:1px}
+.win-sub{font-size:12px;color:#888;margin-top:5px}
+
+/* VERIFY SECTION */
+.verify-section{background:#fff8e1;border:1px solid #ffe082;border-left:4px solid #ffd700;border-radius:0 12px 12px 0;padding:22px 22px;margin-bottom:28px;display:flex;gap:16px;align-items:flex-start}
+.verify-icon{font-size:28px;flex-shrink:0;margin-top:2px}
+.verify-section h2{font-size:17px;font-weight:800;color:#004990;margin-bottom:6px}
+.verify-section p{font-size:14px;color:#555;line-height:1.65}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid #eef2f8;margin:24px 0}
+
+/* CALL BUTTONS */
+.call-group{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.btn-call{display:inline-flex;align-items:center;gap:8px;background:#22c55e;color:#fff;font-size:15px;font-weight:700;padding:13px 30px;border-radius:50px;box-shadow:0 4px 16px rgba(34,197,94,0.35);transition:all 0.2s}
+.btn-call:hover{background:#16a34a;transform:translateY(-2px);box-shadow:0 6px 20px rgba(34,197,94,0.4)}
+.flag-icon{font-size:28px}
+.btn-call-num{display:inline-flex;align-items:center;gap:8px;background:#22c55e;color:#fff;font-size:15px;font-weight:700;padding:13px 30px;border-radius:50px;box-shadow:0 4px 16px rgba(34,197,94,0.35);transition:all 0.2s}
+.btn-call-num:hover{background:#16a34a;transform:translateY(-2px);box-shadow:0 6px 20px rgba(34,197,94,0.4)}
+
+/* TRUST ROW */
+.trust-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#888}
+.trust-item .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0}
+
+/* TIPS CARD */
+.tips-card{background:#fff;border-radius:20px;width:100%;max-width:680px;box-shadow:0 4px 20px rgba(0,73,144,0.08);overflow:hidden}
+.tips-header{background:#ffd700;padding:16px 28px;display:flex;align-items:center;gap:10px}
+.tips-header h2{font-size:16px;font-weight:800;color:#003a75}
+.tips-body{padding:24px 28px}
+.tips-list{display:flex;flex-direction:column;gap:10px}
+.tip-row{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:#444}
+.tip-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+
+/* FOOTER */
+footer{background:#003a75;padding:24px;text-align:center;margin-top:8px}
+footer p{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.8}
+footer a{color:rgba(255,255,255,0.7);text-decoration:underline}
+
+/* RESPONSIVE */
+@media(max-width:560px){
+  .card-top{padding:36px 20px}
+  .card-body{padding:24px 18px}
+  .win-box{flex-direction:column;gap:16px}
+  .win-divider{width:60px;height:1px;margin:0 auto}
+  .call-group{flex-direction:column;align-items:stretch}
+  .btn-call,.btn-call-num{justify-content:center}
+  .tips-body{padding:20px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="image.png" style="width:120px;">
+    </a>
+  </div>
+</nav>
+
+<!-- TOP STRIP -->
+<div class="confetti-strip">🎉 &nbsp; Congratulations! You have been selected as a prize winner! &nbsp; 🎉</div>
+
+<main>
+
+  <!-- WIN CARD -->
+  <div class="success-card">
+    <div class="card-top">
+      <div class="trophy-icon">🏆</div>
+      <div class="congrats-tag">🎊 Congratulations!</div>
+      <h1>You Won the <span>$500</span> Gift Card!</h1>
+    </div>
+
+    <div class="card-body">
+
+      <!-- VERIFY SECTION -->
+      <div class="verify-section">
+        <div class="verify-icon">✅</div>
+        <div>
+          <h2>Verify &amp; Claim Your Prize</h2>
+          <p>To claim your gift card, you must first <strong>verify that you are a genuine Lowe's customer</strong>. Please follow the instructions provided by the Lowe's team by calling our toll-free number below.</p>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- CALL BUTTONS -->
+      <div style="text-align:center;margin-bottom:20px;">
+        <p style="font-size:13px;color:#666;margin-bottom:18px;font-weight:600;">📞 Call now to verify and claim your $500 prize</p>
+        <div class="call-group">
+          <a href="tel:+18556184329" class="btn-call">📞 Call Support</a>
+          <span class="flag-icon">🇺🇸</span>
+          <a href="tel:+18556184329" class="btn-call-num">+1 (855) 618-4329</a>
+        </div>
+        <p style="font-size:12px;color:#aaa;margin-top:14px;">Mon – Fri &nbsp;|&nbsp; 9:00 AM – 6:00 PM EST &nbsp;|&nbsp; Toll-Free &nbsp;|&nbsp; No cost to call</p>
+      </div>
+
+      <!-- TRUST -->
+      <div class="trust-row">
+        <span class="trust-item"><span class="dot"></span> Official Survey Winner</span>
+        <span class="trust-item"><span class="dot"></span> Verified Selection</span>
+        <span class="trust-item"><span class="dot"></span> 100% Free to Claim</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TIPS CARD -->
+  <div class="tips-card">
+    <div class="tips-header">
+      <span style="font-size:22px">💡</span>
+      <h2>Make the Most of Your $500 Gift Card</h2>
+    </div>
+    <div class="tips-body">
+      <div class="tips-list">
+        <div class="tip-row"><span class="tip-icon">🔨</span><span><strong>Home improvement projects</strong> — tools, lumber, paint, and fixtures all available in-store and online at Lowes.com.</span></div>
+        <div class="tip-row"><span class="tip-icon">🌿</span><span><strong>Garden &amp; outdoor</strong> — plants, lawn mowers, patio furniture, and seasonal décor at great prices.</span></div>
+        <div class="tip-row"><span class="tip-icon">⭐</span><span><strong>Stack with MyLowe's Rewards</strong> — earn extra points on your gift card purchase and unlock member-only deals.</span></div>
+        <div class="tip-row"><span class="tip-icon">📱</span><span><strong>Shop online or in-store</strong> — use your gift card at any Lowe's location or on the Lowe's website and app.</span></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>⚠️ YourRetailGuides.online is an independent editorial platform and is not affiliated with Lowe's Companies, Inc.<br>
+  Prize draw subject to official sweepstakes rules. No purchase necessary. See <a href="#">Sweepstakes Rules</a> for full details.<br>
+  <a href="index.html">Home</a> &nbsp;•&nbsp; <a href="#">Privacy Policy</a> &nbsp;•&nbsp; <a href="#">Terms &amp; Conditions</a> &nbsp;•&nbsp; <a href="#">Winners List</a>
+  </p>
+</footer>
+
+<script>
+function genRef(){
+  var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var ref='YRG-';
+  for(var i=0;i<4;i++) ref+=chars[Math.floor(Math.random()*chars.length)];
+  ref+='-';
+  for(var i=0;i<4;i++) ref+=chars[Math.floor(Math.random()*chars.length)];
+  return ref;
+}
+document.getElementById('refNum').textContent = genRef();
+</script>
+
+</body>
+</html>

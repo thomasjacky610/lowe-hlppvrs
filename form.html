@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lowe's Customer Satisfaction Survey — Win $500</title>
+<meta name="description" content="Complete the official Lowe's customer satisfaction survey. Share your experience and enter to win a $500 Lowe's gift card.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f4fa;color:#1a1a1a;font-size:16px;line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{background:#004990;padding:0;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;font-size:17px;font-weight:700}
+.logo-mark{width:32px;height:32px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center}
+.logo-mark span{color:#004990;font-weight:900;font-size:12px}
+.nav-home{color:rgba(255,255,255,0.8);font-size:13px;display:flex;align-items:center;gap:6px}
+.nav-home:hover{color:#fff}
+
+/* PROGRESS BAR */
+.progress-wrap{background:#003a75;padding:10px 20px}
+.progress-inner{max-width:700px;margin:0 auto}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.75);margin-bottom:6px}
+.progress-track{background:rgba(255,255,255,0.2);border-radius:10px;height:8px;overflow:hidden}
+.progress-fill{height:100%;background:#ffd700;border-radius:10px;transition:width 0.4s ease}
+.step-dots{display:flex;justify-content:center;gap:8px;margin-top:10px}
+.step-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.3);transition:background 0.3s}
+.step-dot.active{background:#ffd700}
+.step-dot.done{background:#4ade80}
+
+/* MAIN */
+main{min-height:calc(100vh - 130px);padding:32px 16px 48px;display:flex;align-items:flex-start;justify-content:center}
+.survey-card{background:#fff;border-radius:16px;width:100%;max-width:700px;box-shadow:0 4px 24px rgba(0,73,144,0.1);overflow:hidden}
+
+/* CARD HEADER */
+.card-header{background:#004990;padding:28px 32px;display:flex;align-items:center;gap:16px}
+.card-header-icon{width:52px;height:52px;background:rgba(255,255,255,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.card-header-text h1{font-size:20px;font-weight:700;color:#fff;margin-bottom:4px}
+.card-header-text p{font-size:13px;color:rgba(255,255,255,0.8)}
+.prize-pill{display:inline-flex;align-items:center;gap:6px;background:#ffd700;color:#003a75;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:8px}
+
+/* STEPS */
+.step{display:none;padding:32px}
+.step.active{display:block}
+.step-title{font-size:18px;font-weight:700;color:#004990;margin-bottom:6px}
+.step-desc{font-size:14px;color:#666;margin-bottom:28px;line-height:1.6}
+
+/* RECEIPT IMAGE HINT */
+.receipt-hint{background:#f0f4fa;border:1px dashed #b0c4de;border-radius:10px;padding:16px;margin-bottom:24px;display:flex;align-items:center;gap:14px}
+.receipt-hint .hint-icon{font-size:32px;flex-shrink:0}
+.receipt-hint p{font-size:13px;color:#555;line-height:1.6}
+.receipt-hint strong{color:#004990}
+
+/* FORM ELEMENTS */
+.form-group{margin-bottom:22px}
+.form-group label{display:block;font-size:14px;font-weight:600;color:#2c2c2c;margin-bottom:8px}
+.form-group label .req{color:#e31837;margin-left:2px}
+.form-group input,.form-group select{width:100%;padding:13px 16px;border:2px solid #dde5f0;border-radius:8px;font-size:15px;font-family:inherit;color:#1a1a1a;background:#fff;transition:border-color 0.2s,box-shadow 0.2s;outline:none}
+.form-group input:focus,.form-group select:focus{border-color:#004990;box-shadow:0 0 0 3px rgba(0,73,144,0.1)}
+.form-group input::placeholder{color:#aaa;font-size:14px}
+.form-group .hint{font-size:12px;color:#888;margin-top:5px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* STAR RATING */
+.rating-question{margin-bottom:26px;padding:20px;background:#f8fafd;border:1px solid #e0e8f5;border-radius:10px}
+.rating-question .q-label{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:14px;line-height:1.5}
+.star-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.star-option{display:none}
+.star-label{cursor:pointer;font-size:32px;color:#ddd;transition:color 0.15s;line-height:1;user-select:none}
+.star-label:hover,.star-label.selected{color:#ffd700}
+.star-label.hover-active{color:#ffd700}
+.rating-text{font-size:13px;color:#888;margin-left:8px;transition:color 0.2s}
+
+/* RADIO BUTTONS */
+.radio-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.radio-opt{flex:1;min-width:100px}
+.radio-opt input[type="radio"]{display:none}
+.radio-opt label{display:block;text-align:center;padding:10px 16px;border:2px solid #dde5f0;border-radius:8px;font-size:14px;font-weight:600;color:#555;cursor:pointer;transition:all 0.2s}
+.radio-opt input[type="radio"]:checked + label{border-color:#004990;background:#e8f0fe;color:#004990}
+.radio-opt label:hover{border-color:#004990;color:#004990}
+
+/* BUTTONS */
+.btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:32px;padding-top:24px;border-top:1px solid #eef2f8}
+.btn-back{background:transparent;border:2px solid #dde5f0;color:#666;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all 0.2s}
+.btn-back:hover{border-color:#004990;color:#004990}
+.btn-next{background:#004990;color:#fff;padding:13px 36px;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-next:hover{background:#003a75;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,73,144,0.3)}
+.btn-submit{background:#e31837;color:#fff;padding:14px 40px;border:none;border-radius:50px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(227,24,55,0.3)}
+.btn-submit:hover{background:#c0132d;transform:translateY(-2px);box-shadow:0 6px 20px rgba(227,24,55,0.4)}
+
+/* TRUST BADGES */
+.trust-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.trust-badge{display:flex;align-items:center;gap:6px;font-size:12px;color:#888}
+.trust-badge .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0}
+
+/* STEP 3 — contact */
+.optional-tag{display:inline-block;background:#e8f0fe;color:#004990;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:6px;vertical-align:middle}
+.privacy-note{background:#fff8e1;border-left:3px solid #ffd700;padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:#6b5a00;margin-top:20px;line-height:1.6}
+
+/* FOOTER */
+footer{background:#003a75;padding:20px 24px;text-align:center}
+footer p{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.7}
+footer a{color:rgba(255,255,255,0.7);text-decoration:underline}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .card-header{padding:20px}
+  .step{padding:20px}
+  .form-row{grid-template-columns:1fr}
+  .btn-row{flex-direction:column-reverse;gap:12px}
+  .btn-next,.btn-back,.btn-submit{width:100%;justify-content:center}
+  .star-label{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark"><span>YRG</span></div>
+      YourRetailGuides
+    </a>
+    <a href="index.html" class="nav-home">&#8592; Back to Home</a>
+  </div>
+</nav>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span id="stepLabel">Step 1 of 3 — Receipt Details</span>
+      <span id="stepPct">33%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:33%"></div>
+    </div>
+    <div class="step-dots">
+      <div class="step-dot active" id="dot1"></div>
+      <div class="step-dot" id="dot2"></div>
+      <div class="step-dot" id="dot3"></div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="survey-card">
+
+    <!-- CARD HEADER -->
+    <div class="card-header">
+      <div class="card-header-icon">&#127888;</div>
+      <div class="card-header-text">
+        <h1>Lowe's Customer Satisfaction Survey</h1>
+        <p>Thank you for choosing Lowe's. This survey takes no more than 5 minutes.</p>
+        <span class="prize-pill">&#127881; Win $500 Gift Card</span>
+      </div>
+    </div>
+
+    <!-- STEP 1: Receipt Details -->
+    <div class="step active" id="step1">
+      <p class="step-title">&#129534; Enter your receipt details</p>
+      <p class="step-desc">Please enter the information from the bottom of your Lowe's purchase receipt. This verifies your recent store visit.</p>
+
+      <div class="receipt-hint">
+        <div class="hint-icon">&#129534;</div>
+        <p>Find the <strong>18-digit ID number</strong> printed at the bottom of your receipt. You'll also need the <strong>date and time</strong> of your visit.</p>
+      </div>
+
+      <div class="form-group">
+        <label for="receiptId">Receipt 18-Digit ID Number <span class="req">*</span></label>
+        <input type="text" id="receiptId" placeholder="Example: 123456789012345678" maxlength="18" inputmode="numeric">
+        <p class="hint">Enter all 18 digits with no spaces or dashes</p>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="visitDate">Date of Visit <span class="req">*</span></label>
+          <input type="date" id="visitDate">
+        </div>
+        <div class="form-group">
+          <label for="visitTime">Time of Visit <span class="req">*</span></label>
+          <select id="visitTime">
+            <option value="">— Select time —</option>
+            <option>6:00 AM</option><option>7:00 AM</option><option>8:00 AM</option>
+            <option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+            <option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option>
+            <option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option>
+            <option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option>
+            <option>9:00 PM</option><option>10:00 PM</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="language">Preferred Language <span class="req">*</span></label>
+        <select id="language">
+          <option value="">— Select language —</option>
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </div>
+
+      <div class="btn-row">
+        <div class="trust-row">
+          <span class="trust-badge"><span class="dot"></span> Secure &amp; private</span>
+          <span class="trust-badge"><span class="dot"></span> 100% free</span>
+        </div>
+        <button class="btn-next" onclick="goToStep(2)">Next &#8594;</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Survey Questions -->
+    <div class="step" id="step2">
+      <p class="step-title">&#9989; Rate your experience</p>
+      <p class="step-desc">Please answer all questions honestly based on your most recent visit to Lowe's. Your feedback helps improve the experience for everyone.</p>
+
+      <!-- Q1 -->
+      <div class="rating-question">
+        <p class="q-label">1. How would you rate the <strong>store representative / staff</strong> on a scale of 1–5?</p>
+        <div class="star-row" data-q="q1">
+          <span class="star-label" data-val="1">&#9733;</span>
+          <span class="star-label" data-val="2">&#9733;</span>
+          <span class="star-label" data-val="3">&#9733;</span>
+          <span class="star-label" data-val="4">&#9733;</span>
+          <span class="star-label" data-val="5">&#9733;</span>
+          <span class="rating-text" id="q1text">Tap to rate</span>
+        </div>
+        <input type="hidden" id="q1" value="">
+      </div>
+
+      <!-- Q2 -->
+      <div class="rating-question">
+        <p class="q-label">2. How would you rate the <strong>pricing of products</strong> at the store?</p>
+        <div class="star-row" data-q="q2">
+          <span class="star-label" data-val="1">&#9733;</span>
+          <span class="star-label" data-val="2">&#9733;</span>
+          <span class="star-label" data-val="3">&#9733;</span>
+          <span class="star-label" data-val="4">&#9733;</span>
+          <span class="star-label" data-val="5">&#9733;</span>
+          <span class="rating-text" id="q2text">Tap to rate</span>
+        </div>
+        <input type="hidden" id="q2" value="">
+      </div>
+
+      <!-- Q3 -->
+      <div class="rating-question">
+        <p class="q-label">3. How would you rate the <strong>checkout process</strong> at the store?</p>
+        <div class="star-row" data-q="q3">
+          <span class="star-label" data-val="1">&#9733;</span>
+          <span class="star-label" data-val="2">&#9733;</span>
+          <span class="star-label" data-val="3">&#9733;</span>
+          <span class="star-label" data-val="4">&#9733;</span>
+          <span class="star-label" data-val="5">&#9733;</span>
+          <span class="rating-text" id="q3text">Tap to rate</span>
+        </div>
+        <input type="hidden" id="q3" value="">
+      </div>
+
+      <!-- Q4 -->
+      <div class="rating-question">
+        <p class="q-label">4. Would you <strong>recommend Lowe's</strong> to your friends and family?</p>
+        <div class="radio-group">
+          <div class="radio-opt"><input type="radio" name="q4" id="q4yes" value="Yes"><label for="q4yes">&#128077; Yes</label></div>
+          <div class="radio-opt"><input type="radio" name="q4" id="q4maybe" value="Maybe"><label for="q4maybe">&#129300; Maybe</label></div>
+          <div class="radio-opt"><input type="radio" name="q4" id="q4no" value="No"><label for="q4no">&#128078; No</label></div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="rating-question">
+        <p class="q-label">5. Overall, how satisfied were you with your <strong>Lowe's shopping experience</strong>?</p>
+        <div class="star-row" data-q="q5">
+          <span class="star-label" data-val="1">&#9733;</span>
+          <span class="star-label" data-val="2">&#9733;</span>
+          <span class="star-label" data-val="3">&#9733;</span>
+          <span class="star-label" data-val="4">&#9733;</span>
+          <span class="star-label" data-val="5">&#9733;</span>
+          <span class="rating-text" id="q5text">Tap to rate</span>
+        </div>
+        <input type="hidden" id="q5" value="">
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="goToStep(1)">&#8592; Back</button>
+        <button class="btn-next" onclick="goToStep(3)">Next &#8594;</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Contact Details -->
+    <div class="step" id="step3">
+      <p class="step-title">&#127873; Enter the prize draw</p>
+      <p class="step-desc">You've completed the survey! Provide your contact details below to be entered into the <strong>$500 Lowe's gift card monthly prize draw</strong>. Contact details are optional but required for prize draw entry.</p>
+
+      <div class="form-group">
+        <label for="firstName">First Name <span class="optional-tag">Optional</span></label>
+        <input type="text" id="firstName" placeholder="Your first name">
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name <span class="optional-tag">Optional</span></label>
+        <input type="text" id="lastName" placeholder="Your last name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address <span class="optional-tag">For prize notification</span></label>
+        <input type="email" id="email" placeholder="you@example.com">
+        <p class="hint">We'll only use this to contact you if you win. No spam, ever.</p>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number <span class="optional-tag">Optional</span></label>
+        <input type="tel" id="phone" placeholder="+1 (___) ___-____">
+      </div>
+
+      <div class="privacy-note">
+        &#128274; Your personal information is kept completely private and will only be used for prize draw contact purposes. We will never share or sell your data.
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="goToStep(2)">&#8592; Back</button>
+        <button class="btn-submit" onclick="submitSurvey()">&#127881; Submit &amp; Enter Draw</button>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p>&#9888;&#65039; This survey page is operated by YourRetailGuides.online, an independent editorial platform. We are not affiliated with Lowe's Companies, Inc.<br>
+  <a href="index.html">Home</a> &nbsp;&bull;&nbsp; <a href="#">Privacy Policy</a> &nbsp;&bull;&nbsp; <a href="#">Sweepstakes Rules</a> &nbsp;&bull;&nbsp; <a href="#">Winners List</a>
+  </p>
+</footer>
+
+<script>
+var ratingLabels = ['','Poor','Fair','Good','Very Good','Excellent'];
+
+// Star rating logic
+document.querySelectorAll('.star-row').forEach(function(row){
+  var qId = row.getAttribute('data-q');
+  var stars = row.querySelectorAll('.star-label');
+  var textEl = document.getElementById(qId+'text');
+  var input = document.getElementById(qId);
+
+  stars.forEach(function(star, idx){
+    star.addEventListener('mouseover', function(){
+      stars.forEach(function(s, i){ s.style.color = i <= idx ? '#ffd700' : '#ddd'; });
+      textEl.textContent = ratingLabels[idx+1];
+      textEl.style.color = '#004990';
+    });
+    star.addEventListener('mouseout', function(){
+      var val = parseInt(input.value) || 0;
+      stars.forEach(function(s, i){ s.style.color = i < val ? '#ffd700' : '#ddd'; });
+      textEl.textContent = val ? ratingLabels[val] : 'Tap to rate';
+      textEl.style.color = val ? '#004990' : '#888';
+    });
+    star.addEventListener('click', function(){
+      input.value = idx+1;
+      stars.forEach(function(s, i){ s.style.color = i <= idx ? '#ffd700' : '#ddd'; });
+      textEl.textContent = ratingLabels[idx+1];
+      textEl.style.color = '#004990';
+    });
+    // Touch support
+    star.addEventListener('touchend', function(e){
+      e.preventDefault();
+      input.value = idx+1;
+      stars.forEach(function(s, i){ s.style.color = i <= idx ? '#ffd700' : '#ddd'; });
+      textEl.textContent = ratingLabels[idx+1];
+      textEl.style.color = '#004990';
+    });
+  });
+});
+
+function goToStep(n){
+  document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('step'+n).classList.add('active');
+
+  var pcts = ['33%','66%','100%'];
+  var labels = ['Step 1 of 3 — Receipt Details','Step 2 of 3 — Your Ratings','Step 3 of 3 — Prize Draw Entry'];
+  document.getElementById('progressFill').style.width = pcts[n-1];
+  document.getElementById('stepLabel').textContent = labels[n-1];
+  document.getElementById('stepPct').textContent = pcts[n-1];
+
+  for(var i=1;i<=3;i++){
+    var dot = document.getElementById('dot'+i);
+    dot.className = 'step-dot';
+    if(i < n) dot.classList.add('done');
+    else if(i === n) dot.classList.add('active');
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function submitSurvey(){
+  window.location.href = 'thankyou.html';
+}
+</script>
+</body>
+</html>
